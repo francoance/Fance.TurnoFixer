@@ -11,7 +11,9 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Fance.TurnoFixer.ImageHandler\Fance.TurnoFixer.ImageHandler.csproj" />
       <ProjectReference Include="..\Fance.TurnoFixer.Models\Fance.TurnoFixer.Models.csproj" />
+      <ProjectReference Include="..\Fance.TurnoFixer.Storage\Fance.TurnoFixer.Storage.csproj" />
     </ItemGroup>
 
     <ItemGroup>

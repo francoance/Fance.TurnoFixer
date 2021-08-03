@@ -1,10 +1,12 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Fance.TurnoFixer.ImageHandler.Interfaces;
+using Fance.TurnoFixer.Storage;
+using Fance.TurnoFixer.Storage.Interfaces;
 using Fance.TurnoFixer.TelegramBot;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Telegram.Bot;
+using Telegram.Bot.Extensions.Polling;
 
 namespace Fance.TurnoFixer
 {
@@ -17,6 +19,13 @@ namespace Fance.TurnoFixer
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureServices((hostContext, services) => { services.AddHostedService<TurnoFixerBot>(); });
+                .ConfigureServices((hostContext, services) =>
+                {
+                    services.AddHostedService<TurnoFixerBot>();
+                    services.AddTransient<IUpdateHandler, UpdateHandler>();
+                    services.AddTransient<IImageHandler, ImageHandler.ImageHandler>();
+                    services.AddTransient<IObjectStorage, OracleObjectStorage>();
+                    services.AddTransient<ITelegramBotClient>(_ => new TelegramBotClient(Environment.GetEnvironmentVariable("TELEGRAM_BOT_TOKEN")));
+                });
     }
 }
