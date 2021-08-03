@@ -47,7 +47,7 @@ namespace Fance.TurnoFixer.TelegramBot
                 {
                     await using MemoryStream ms = new();
                     var fileInfo = await botClient.GetInfoAndDownloadFileAsync(message.Photo.OrderByDescending(x => x.Height).First().FileId, ms, cancellationToken);
-                    var fileName = $"{message.Chat.Id}_{message.Chat.Username}_{fileInfo.FilePath.Split('/').Last()}";
+                    var fileName = $"{DateTime.UtcNow.ToString("yyMMddHHmmss")}_{message.Chat.Id}_{message.Chat.Username}_{fileInfo.FilePath.Split('/').Last()}";
                     await _storage.PutObjectAsync(ms.ToArray(), fileName);
                     
                     if (string.IsNullOrEmpty(currentChat.FirstImageName))

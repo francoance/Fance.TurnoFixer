@@ -41,7 +41,7 @@ namespace Fance.TurnoFixer.ImageHandler
                 
                 await using MemoryStream ms = new();
                 original.Save(ms, ImageFormat.Png);
-                var newFileName = $"processed___{originalFile}___{overlayFile}.png";
+                var newFileName = $"processed___{DateTime.UtcNow.ToString("yyMMddHHmmss")}___{originalFile}___{overlayFile}.png";
                 await _objectStorage.PutObjectAsync(ms.ToArray(), newFileName);
                 return newFileName;
             }
