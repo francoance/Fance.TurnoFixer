@@ -87,7 +87,7 @@ jobs:
           else
             kill -9 $pid
           fi
-          sudo mkdir -p ~/turnofixer
+          mkdir -p ~/turnofixer
     - name: 'Push files'
       uses: appleboy/scp-action@master
       with:
@@ -104,5 +104,4 @@ jobs:
         username: ubuntu
         key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
         script: |
-          sudo mv ~/app/cicd-demo-${{env.VERSION}}-all.jar /app/cicd-demo.jar
           dotnet ~/turnofixer/Fance.TurnoFixer.dll &
