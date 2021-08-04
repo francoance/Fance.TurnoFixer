@@ -104,4 +104,4 @@ jobs:
         username: ubuntu
         key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
         script: |
-          dotnet ~/turnofixer/Fance.TurnoFixer.dll &
+          ~/dotnet/dotnet ~/turnofixer/Release/net5.0/Fance.TurnoFixer.dll &
