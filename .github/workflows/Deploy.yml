@@ -97,6 +97,15 @@ jobs:
         source: "./Fance.TurnoFixer/bin/Release/net5.0/*"
         target: "~/turnofixer"
         strip_components: 2
+    - name: 'Set environment variables'
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ env.INSTANCE_IP }}
+        username: ubuntu
+        key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
+        script: |
+          export TELEGRAM_BOT_TOKEN=${{ secrets.TELEGRAM_BOT_TOKEN }}
+          export ORACLE_STORAGE_BASE_URI=${{ secrets.ORACLE_STORAGE_BASE_URI }}
     - name: 'Start App'
       uses: appleboy/ssh-action@master
       with:
