@@ -43,7 +43,8 @@ jobs:
         curl -L -O https://raw.githubusercontent.com/oracle/oci-cli/master/scripts/install/install.sh
         chmod +x install.sh
         ./install.sh --accept-all-defaults
-        echo "/home/runner/bin;" >> $GITHUB_PATH
+        echo "/home/runner/bin" >> $GITHUB_PATH
+        exec -l $SHELL
     - name: 'Fix Config File Permissions'
       run: |
         oci setup repair-file-permissions --file /home/runner/.oci/config
@@ -54,7 +55,7 @@ jobs:
           oci compute instance list \
           --lifecycle-state RUNNING \
           --compartment-id ${{secrets.VM_COMPARTMENT_OCID}} \
-          --display-name cicd-demo \
+          --display-name vm-turno-fixer \
           --query "data [0].id" \
           --raw-output \
         )" >> $GITHUB_ENV
