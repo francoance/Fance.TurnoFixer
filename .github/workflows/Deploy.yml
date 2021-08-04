@@ -81,7 +81,7 @@ jobs:
         username: ubuntu
         key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
         script: |
-          pid=`ps aux | grep "Fance.TurnoFixer.dll" | awk '{print $2}'`
+          pid=`ps aux | grep "[F]ance.TurnoFixer.dll" | awk '{print $2}'`
           if [ "$pid" == "" ]; then
             echo "Process not found"
           else
