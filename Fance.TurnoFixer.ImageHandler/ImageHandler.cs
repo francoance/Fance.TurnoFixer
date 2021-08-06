@@ -30,7 +30,7 @@ namespace Fance.TurnoFixer.ImageHandler
                 var original = new Bitmap(msOriginal);
                 var horario = new Bitmap(msHorario);
                 
-                var cropRect = new Rectangle(350, 160, 250, 65);
+                var cropRect = new Rectangle(0, 160, 600, 65);
                 var cutImg = horario.Clone(cropRect, horario.PixelFormat); 
                 
                 //get a graphics object from the image so we can draw on it
