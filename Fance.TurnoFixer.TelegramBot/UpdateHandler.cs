@@ -7,7 +7,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Fance.TurnoFixer.ImageHandler.Interfaces;
 using Fance.TurnoFixer.Models;
-using Fance.TurnoFixer.Storage;
 using Fance.TurnoFixer.Storage.Interfaces;
 using Telegram.Bot;
 using Telegram.Bot.Exceptions;
@@ -20,15 +19,15 @@ namespace Fance.TurnoFixer.TelegramBot
     public class UpdateHandler : IUpdateHandler
     {
         private readonly Dictionary<long, ChatStatus> _chats;
-        private readonly OracleObjectStorage _storage;
+        private readonly IObjectStorage _storage;
         private readonly IImageHandler _imageHandler;
         public UpdateType[]? AllowedUpdates { get; }
 
         public UpdateHandler(IImageHandler imageHandler, IObjectStorage objectStorage)
         {
             _imageHandler = imageHandler;
+            _storage = objectStorage;
             _chats = new Dictionary<long, ChatStatus>();
-            _storage = new OracleObjectStorage();
             AllowedUpdates = Array.Empty<UpdateType>();
         }
         
@@ -62,7 +61,7 @@ namespace Fance.TurnoFixer.TelegramBot
                         var newFileName = await _imageHandler.ProcessImagesAsync(currentChat.FirstImageName,
                             currentChat.SecondImageName);
 
-                        await botClient.SendPhotoAsync(message.Chat, photo: await _storage.GetObjectLocationAsync(newFileName));
+                        await botClient.SendPhotoAsync(message.Chat, photo: await _storage.GetObjectLocationAsync(newFileName), cancellationToken: cancellationToken);
                         await botClient.SendTextMessageAsync(message.Chat, "Chau :3", cancellationToken: cancellationToken);
                         _chats.Remove(message.Chat.Id);
                     }

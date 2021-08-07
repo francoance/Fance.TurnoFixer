@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Fance.TurnoFixer.Storage.Interfaces;
+using Microsoft.Extensions.Configuration;
 
 namespace Fance.TurnoFixer.Storage
 {
@@ -10,9 +11,9 @@ namespace Fance.TurnoFixer.Storage
     {
         private readonly string _baseUri;
 
-        public OracleObjectStorage()
+        public OracleObjectStorage(IConfiguration configuration)
         {
-            _baseUri = Environment.GetEnvironmentVariable("ORACLE_STORAGE_BASE_URI");
+            _baseUri = configuration.GetSection("OracleStorageBaseUri").Value;
         }
 
         public async Task PutObjectAsync(byte[] objectToStore, string fileName)

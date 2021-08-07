@@ -14,6 +14,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - uses: microsoft/variable-substitution@v1
+      with:
+        files: 'appsettings.json'
+      env:
+        TelegramBotToken: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        OracleStorageBaseUri: ${{ secrets.ORACLE_STORAGE_BASE_URI }}
     # Install .NET Core
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
@@ -97,15 +103,6 @@ jobs:
         source: "./Fance.TurnoFixer/bin/Release/net5.0/*"
         target: "~/turnofixer"
         strip_components: 2
-    - name: 'Set environment variables'
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ env.INSTANCE_IP }}
-        username: ubuntu
-        key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
-        script: |
-          export TELEGRAM_BOT_TOKEN=${{ secrets.TELEGRAM_BOT_TOKEN }}
-          export ORACLE_STORAGE_BASE_URI=${{ secrets.ORACLE_STORAGE_BASE_URI }}
     - name: 'Start App'
       uses: appleboy/ssh-action@master
       with:
