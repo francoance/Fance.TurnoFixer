@@ -107,5 +107,4 @@ jobs:
         key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
         script: |
           source ~/.bashrc
-          cat ~/turnofixer/Release/net5.0/appsettings.json
           ~/dotnet/dotnet ~/turnofixer/Release/net5.0/Fance.TurnoFixer.dll &

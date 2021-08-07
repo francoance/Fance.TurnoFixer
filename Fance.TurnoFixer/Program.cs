@@ -20,6 +20,10 @@ namespace Fance.TurnoFixer
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration((hostContext, config) =>
+                {
+                    config.AddJsonFile("appsettings.json", false, true);
+                })
                 .ConfigureServices((hostContext, services) =>
                 {
                     services.AddHostedService<TurnoFixerBot>();
