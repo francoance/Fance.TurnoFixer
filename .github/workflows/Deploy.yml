@@ -105,5 +105,4 @@ jobs:
         host: ${{ env.INSTANCE_IP }}
         username: ubuntu
         key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
-        script: |
-          bash ~/turnofixer/Release/net5.0/start-service.sh
+        script: bash ~/turnofixer/Release/net5.0/start-service.sh
