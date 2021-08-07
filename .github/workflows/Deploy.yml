@@ -106,6 +106,4 @@ jobs:
         username: ubuntu
         key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
         script: |
-          whoami
-          ls -la
-          bash ~/turnofixer/Release/net5.0/start-service.sh          
+          bash ~/turnofixer/Release/net5.0/start-service.sh
