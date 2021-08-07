@@ -106,4 +106,5 @@ jobs:
         username: ubuntu
         key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
         script: |
+          source ~/.bashrc
           bash ~/turnofixer/Release/net5.0/start-service.sh
