@@ -26,7 +26,6 @@ namespace Fance.TurnoFixer
                     services.AddTransient<IUpdateHandler, UpdateHandler>();
                     services.AddTransient<IImageHandler, ImageHandler.ImageHandler>();
                     services.AddTransient<IObjectStorage, OracleObjectStorage>();
-                    Console.WriteLine(hostContext.Configuration.GetSection("TelegramBotToken").Value);
                     services.AddTransient<ITelegramBotClient>(_ => new TelegramBotClient(hostContext.Configuration.GetSection("TelegramBotToken").Value));
                 });
     }
