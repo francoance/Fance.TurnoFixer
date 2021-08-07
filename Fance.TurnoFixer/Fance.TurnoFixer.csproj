@@ -12,10 +12,4 @@
     <ItemGroup>
       <ProjectReference Include="..\Fance.TurnoFixer.TelegramBot\Fance.TurnoFixer.TelegramBot.csproj" />
     </ItemGroup>
-
-    <ItemGroup>
-      <None Update="start-service.sh">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-    </ItemGroup>
 </Project>
