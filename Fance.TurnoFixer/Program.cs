@@ -23,7 +23,7 @@ namespace Fance.TurnoFixer
             Host.CreateDefaultBuilder(args)
                 .ConfigureAppConfiguration((hostContext, config) =>
                 {
-                    config.SetBasePath(Directory.GetCurrentDirectory());
+                    config.SetBasePath(hostContext.HostingEnvironment.ContentRootPath);
                     config.AddJsonFile("appsettings.json", true, true);
                 })
                 .ConfigureServices((hostContext, services) =>
