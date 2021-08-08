@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Reflection;
 using Fance.TurnoFixer.ImageHandler.Interfaces;
 using Fance.TurnoFixer.Storage;
 using Fance.TurnoFixer.Storage.Interfaces;
@@ -23,7 +24,7 @@ namespace Fance.TurnoFixer
             Host.CreateDefaultBuilder(args)
                 .ConfigureAppConfiguration((hostContext, config) =>
                 {
-                    config.SetBasePath(hostContext.HostingEnvironment.ContentRootPath);
+                    config.SetBasePath(Assembly.GetExecutingAssembly().Location);
                     config.AddJsonFile("appsettings.json", false, true);
                 })
                 .ConfigureServices((hostContext, services) =>
