@@ -107,4 +107,4 @@ jobs:
         key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
         script: |
           source ~/.bashrc
-          nohup ~/dotnet/dotnet ~/turnofixer/Release/net5.0/Fance.TurnoFixer.dll > /dev/null 2>&1 &
+          ~/dotnet/dotnet ~/turnofixer/Release/net5.0/Fance.TurnoFixer.dll &
