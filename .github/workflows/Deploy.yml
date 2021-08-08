@@ -108,4 +108,4 @@ jobs:
         script: |
           source ~/.bashrc
           cd ~/turnofixer/Release/net5.0/
-          ~/dotnet/dotnet ~/turnofixer/Release/net5.0/Fance.TurnoFixer.dll &
+          nohup ~/dotnet/dotnet ~/turnofixer/Release/net5.0/Fance.TurnoFixer.dll > /dev/null 2>&1 &
