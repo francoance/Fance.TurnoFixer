@@ -24,7 +24,7 @@ namespace Fance.TurnoFixer
             Host.CreateDefaultBuilder(args)
                 .ConfigureAppConfiguration((hostContext, config) =>
                 {
-                    config.SetBasePath(Assembly.GetExecutingAssembly().Location);
+                    config.SetBasePath(Assembly.GetExecutingAssembly().Location.Replace("Fance.TurnoFixer.dll", ""));
                     config.AddJsonFile("appsettings.json", false, true);
                 })
                 .ConfigureServices((hostContext, services) =>
